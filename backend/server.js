@@ -137,15 +137,16 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal server error', error: err.message });
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, async () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  try {
-    await connectDB();
-  } catch (err) {
-    console.error('⚠️  Server started but DB connection failed. Fix MONGO_URI in .env and restart.');
-    console.error('DB Error:', err.message);
-  }
-});
+if (require.main === module || (process.env.NODE_ENV !== 'production' && !process.env.VERCEL)) {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, async () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    try {
+      await connectDB();
+    } catch (err) {
+      console.error('⚠️ Server started but DB connection failed:', err.message);
+    }
+  });
+}
 
 module.exports = app;
