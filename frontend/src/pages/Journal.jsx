@@ -72,7 +72,7 @@ const Journal = () => {
       {/* Header */}
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-          style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+          style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
           <NotebookPen size={16} strokeWidth={2} />
         </div>
         <div>
@@ -100,7 +100,7 @@ const Journal = () => {
             required
           />
           <div className="flex justify-end">
-            <button type="submit" className="btn-primary">💕 Save Entry</button>
+            <button type="submit" className="btn-primary">Save Entry</button>
           </div>
         </form>
       </div>
@@ -131,9 +131,9 @@ const Journal = () => {
                 </div>
                 <button onClick={() => handleDelete(e._id)}
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all hover:scale-110 mt-1"
-                  style={{ background: 'rgba(201,79,104,0.08)', border: '1px solid rgba(201,79,104,0.15)' }}
+                  style={{ background: 'rgba(111,92,208,0.08)', border: '1px solid rgba(111,92,208,0.15)' }}
                   title="Delete Entry">
-                  <Trash2 size={12} style={{ color: '#C94F68' }} />
+                  <Trash2 size={12} style={{ color: '#6F5CD0' }} />
                 </button>
               </div>
             ))}

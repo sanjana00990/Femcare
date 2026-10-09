@@ -18,7 +18,7 @@ const ChangeView = ({center,zoom}) => { const map=useMap(); useEffect(()=>{map.s
 
 /* ── Provider Card ───────────────────────────────────── */
 const ProviderCard = ({ p, idx, onClick }) => {
-  const specColor = SPEC_COLORS[p.specialty] || '#C94F68';
+  const specColor = SPEC_COLORS[p.specialty] || '#6F5CD0';
   return (
     <div
       onClick={() => onClick(p)}
@@ -26,7 +26,7 @@ const ProviderCard = ({ p, idx, onClick }) => {
       style={{ background:'var(--bg-glass)', border:'1px solid var(--border-soft)', boxShadow:'var(--shadow-card)', animationDelay:`${idx*60}ms` }}>
       <div className="flex items-start gap-3 p-3.5">
         <div className="w-7 h-7 rounded-xl shrink-0 flex items-center justify-center text-xs font-bold mt-0.5"
-          style={{ background: idx===0?'linear-gradient(135deg,#C94F68,#E87A90)':'var(--accent-soft)', color: idx===0?'#fff':'var(--accent)', border: idx===0?'none':'1px solid var(--border-soft)' }}>
+          style={{ background: idx===0?'linear-gradient(135deg,#6F5CD0,#A596F0)':'var(--accent-soft)', color: idx===0?'#fff':'var(--accent)', border: idx===0?'none':'1px solid var(--border-soft)' }}>
           {idx+1}
         </div>
         <div className="flex-1 min-w-0">
@@ -37,9 +37,9 @@ const ProviderCard = ({ p, idx, onClick }) => {
             {p.isOpen===false && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{background:'rgba(239,68,68,0.12)',color:'#ef4444'}}>● Closed</span>}
           </div>
           <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{background:'rgba(201,79,104,0.10)',color:'#C94F68'}}>📍 {p.distance} km</span>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{background:'rgba(111,92,208,0.10)',color:'#6F5CD0'}}>📍 {p.distance} km</span>
             <div className="flex items-center gap-1 text-[11px]" style={{color:'var(--text-muted)'}}>
-              <Star size={10} style={{color:'#E87A90',fill:'#E87A90'}} />
+              <Star size={10} style={{color:'#A596F0',fill:'#A596F0'}} />
               <span className="font-semibold" style={{color:'var(--text-primary)'}}>{p.rating}</span>
               <span>({p.reviews})</span>
             </div>
@@ -60,7 +60,7 @@ const ProviderCard = ({ p, idx, onClick }) => {
 /* ── Hospital Detail Modal ───────────────────────────── */
 const ProviderDetailModal = ({ p, onClose }) => {
   if (!p) return null;
-  const specColor = SPEC_COLORS[p.specialty] || '#C94F68';
+  const specColor = SPEC_COLORS[p.specialty] || '#6F5CD0';
   return (
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
@@ -102,7 +102,7 @@ const ProviderDetailModal = ({ p, onClose }) => {
               <p className="text-[9px] mt-0.5" style={{color:'var(--text-muted)'}}>{p.reviews} reviews</p>
             </div>
             <div className="flex-1 rounded-2xl p-3 text-center" style={{background:'var(--bg-glass)',border:'1px solid var(--border-soft)'}}>
-              <span className="font-bold text-sm" style={{color:'#C94F68'}}>{p.distance} km</span>
+              <span className="font-bold text-sm" style={{color:'#6F5CD0'}}>{p.distance} km</span>
               <p className="text-[9px] mt-0.5" style={{color:'var(--text-muted)'}}>away</p>
             </div>
             <div className="flex-1 rounded-2xl p-3 text-center" style={{background:'var(--bg-glass)',border:'1px solid var(--border-soft)'}}>
@@ -161,7 +161,7 @@ const ProviderDetailModal = ({ p, onClose }) => {
           <a href={`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`}
             target="_blank" rel="noopener noreferrer"
             className="flex-1 text-center text-sm font-bold py-3 rounded-2xl transition-all hover:-translate-y-0.5"
-            style={{background:'linear-gradient(135deg,#C94F68,#E87A90)',color:'#fff',boxShadow:'0 4px 14px rgba(201,79,104,0.35)'}}>
+            style={{background:'linear-gradient(135deg,#6F5CD0,#A596F0)',color:'#fff',boxShadow:'0 4px 14px rgba(111,92,208,0.35)'}}>
             📍 Get Directions
           </a>
           <a href={p.website} target="_blank" rel="noopener noreferrer"
@@ -313,7 +313,7 @@ const Doctors = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
           <h2 className="text-xl font-bold flex items-center gap-2.5" style={{color:'var(--text-primary)',fontFamily:'Poppins,sans-serif'}}>
-            <span className="w-8 h-8 rounded-xl flex items-center justify-center text-white" style={{background:'linear-gradient(135deg,#C94F68,#E87A90)'}}>
+            <span className="w-8 h-8 rounded-xl flex items-center justify-center text-white" style={{background:'linear-gradient(135deg,#6F5CD0,#A596F0)'}}>
               <MapPin size={16} strokeWidth={2}/>
             </span>
             Nearby Healthcare Providers
@@ -351,7 +351,7 @@ const Doctors = () => {
           <button key={f.key} onClick={()=>toggleFilter(f.key)}
             className="text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all duration-200 hover:-translate-y-0.5"
             style={filters[f.key]
-              ? {background:'linear-gradient(135deg,#C94F68,#E87A90)',color:'#fff',border:'1px solid transparent',boxShadow:'0 2px 8px rgba(201,79,104,0.30)'}
+              ? {background:'linear-gradient(135deg,#6F5CD0,#A596F0)',color:'#fff',border:'1px solid transparent',boxShadow:'0 2px 8px rgba(111,92,208,0.30)'}
               : {background:'var(--accent-soft)',color:'var(--accent)',border:'1px solid var(--border-soft)'}}>
             {f.label}
           </button>
@@ -398,10 +398,10 @@ const Doctors = () => {
               <Popup>Your Location</Popup>
             </Marker>
             {displayed.map(p => (
-              <Marker key={p.id} position={[p.lat,p.lng]} icon={providerIcon(SPEC_COLORS[p.specialty]||'#E87A90')}>
+              <Marker key={p.id} position={[p.lat,p.lng]} icon={providerIcon(SPEC_COLORS[p.specialty]||'#A596F0')}>
                 <Popup>
                   <div style={{fontWeight:700,color:'#8B2D40'}}>{p.name}</div>
-                  <div style={{fontSize:11,color:SPEC_COLORS[p.specialty]||'#C94F68',marginTop:2}}>{p.specialty}</div>
+                  <div style={{fontSize:11,color:SPEC_COLORS[p.specialty]||'#6F5CD0',marginTop:2}}>{p.specialty}</div>
                   <div style={{fontSize:10,color:'#888',marginTop:4}}>⭐ {p.rating} · {p.distance} km</div>
                 </Popup>
               </Marker>
@@ -421,7 +421,7 @@ const Doctors = () => {
           <div className="flex-1 overflow-y-auto mt-3 space-y-3 pr-1" style={{scrollbarWidth:'thin'}}>
           {loading && (
             <div className="flex flex-col items-center justify-center py-10 gap-3">
-              <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{borderColor:'#C94F68',borderTopColor:'transparent'}}/>
+              <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{borderColor:'#6F5CD0',borderTopColor:'transparent'}}/>
               <p className="text-xs" style={{color:'var(--text-muted)'}}>Searching nearby healthcare providers…</p>
             </div>
           )}

@@ -3,7 +3,7 @@ import { BookOpen, ExternalLink, ChevronDown, ChevronUp, AlertTriangle } from 'l
 
 const CONDITIONS = [
   {
-    id: 'pcos', emoji: '🌸', name: 'Polycystic Ovary Syndrome (PCOS)', accent: '#C94F68',
+    id: 'pcos', emoji: '🌸', name: 'Polycystic Ovary Syndrome (PCOS)', accent: '#6F5CD0',
     source: 'World Health Organization (WHO)', sourceUrl: 'https://www.who.int/news-room/fact-sheets/detail/polycystic-ovary-syndrome',
     overview: 'PCOS is a common hormonal disorder affecting 8–13% of women of reproductive age. It involves an imbalance in reproductive hormones, creating problems in the ovaries. The ovaries may develop numerous small follicles and fail to regularly release eggs.',
     causes: ['Excess insulin — high levels increase androgen production','Excess androgen — ovaries produce abnormally high male hormones','Low-grade chronic inflammation','Heredity / Genetics — tends to run in families','Insulin resistance'],
@@ -13,7 +13,7 @@ const CONDITIONS = [
     diagnostics: ['Blood tests — testosterone, LH, FSH, insulin, thyroid','Pelvic ultrasound','Rotterdam Criteria — 2 of 3: irregular periods, excess androgens, polycystic ovaries'],
   },
   {
-    id: 'pcod', emoji: '🌼', name: 'Polycystic Ovarian Disease (PCOD)', accent: '#E87A90',
+    id: 'pcod', emoji: '🌼', name: 'Polycystic Ovarian Disease (PCOD)', accent: '#A596F0',
     source: 'Apollo Hospitals Medical Guidelines', sourceUrl: 'https://www.apollohospitals.com/',
     overview: 'PCOD is a condition where the ovaries release many immature or partially mature eggs. It is more common than PCOS and generally a milder condition caused largely by lifestyle factors. Unlike PCOS, PCOD usually does not cause significant metabolic disturbances.',
     causes: ['Unhealthy lifestyle — poor diet, lack of physical activity','Obesity — increases hormonal imbalance','Chronic stress raises cortisol','Mild hormonal imbalance','Genetic predisposition'],
@@ -23,7 +23,7 @@ const CONDITIONS = [
     diagnostics: ['Pelvic ultrasound — shows multiple small cysts','Blood tests — hormone levels','Blood sugar and insulin tests','Menstrual history review'],
   },
   {
-    id: 'menopause', emoji: '🍂', name: 'Menopause', accent: '#B8A0AA',
+    id: 'menopause', emoji: '🍂', name: 'Menopause', accent: '#665E80',
     source: 'WHO & Apollo Hospitals', sourceUrl: 'https://www.who.int/news-room/fact-sheets/detail/menopause',
     overview: 'Menopause is a natural biological process marking the permanent end of menstruation and fertility, diagnosed after 12 consecutive months without a period. The average age is 51. Perimenopause can begin 4–8 years before menopause.',
     causes: ['Natural decline of oestrogen and progesterone with age','Surgical menopause — removal of ovaries','Chemotherapy and radiation therapy','Primary ovarian insufficiency (POI)','Genetics and smoking'],
@@ -57,7 +57,7 @@ const Learn = () => {
       {/* Header */}
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-          style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+          style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
           <BookOpen size={16} strokeWidth={2} />
         </div>
         <div>
@@ -85,7 +85,7 @@ const Learn = () => {
             <div key={c.id} className="panel p-0 overflow-hidden">
               <button
                 onClick={() => setExpanded(isOpen ? '' : c.id)}
-                className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-rose-primary/5"
+                className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-lavender-primary/5"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-xl shrink-0"

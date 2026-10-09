@@ -8,8 +8,8 @@ export const haversineKm = (lat1, lng1, lat2, lng2) => {
 
 export const SPEC_COLORS = {
   'Multispeciality Hospital': '#6366f1',
-  'Gynecologist': '#E87A90',
-  'Gynecology Clinic': '#ec4899',
+  'Gynecologist': '#6F5CD0',
+  'Gynecology Clinic': '#A596F0',
   "Women's Health Clinic": '#8b5cf6',
   'Maternity Hospital': '#f59e0b',
   'Fertility Center': '#10b981',
@@ -29,7 +29,7 @@ export const SORT_OPTIONS = [
 
 export const SUGGESTED_CITIES = ['Nagpur','Mumbai','Pune','Delhi','Bangalore','Hyderabad','Chennai','Kolkata'];
 
-export const userIcon = L.divIcon({ className:'', html:'<div style="width:14px;height:14px;background:#C94F68;border:3px solid white;border-radius:50%;box-shadow:0 0 12px rgba(201,79,104,0.70)"></div>' });
+export const userIcon = L.divIcon({ className:'', html:'<div style="width:14px;height:14px;background:#6F5CD0;border:3px solid white;border-radius:50%;box-shadow:0 0 12px rgba(111,92,208,0.70)"></div>' });
 export const providerIcon = (color) => L.divIcon({ className:'', html:`<div style="width:12px;height:12px;background:${color};border:2px solid white;border-radius:50%;box-shadow:0 0 8px ${color}99"></div>` });
 
 export const applyFilters = (list, filters) => {

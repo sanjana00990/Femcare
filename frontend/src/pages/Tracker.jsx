@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { CalendarDays, Droplets, Trash2 } from 'lucide-react';
 
 const FLOWS = [
-  { label: 'Light',    value: 'light',    color: '#F4A4B0' },
-  { label: 'Medium',   value: 'medium',   color: '#E87A90' },
-  { label: 'Heavy',    value: 'heavy',    color: '#C94F68' },
-  { label: 'Spotting', value: 'spotting', color: '#D4B8C0' },
+  { label: 'Light',    value: 'light',    color: '#C5C0D8' },
+  { label: 'Medium',   value: 'medium',   color: '#A596F0' },
+  { label: 'Heavy',    value: 'heavy',    color: '#6F5CD0' },
+  { label: 'Spotting', value: 'spotting', color: '#A9A2C4' },
 ];
 
 /* ── localStorage helpers ── */
@@ -71,7 +71,7 @@ const Tracker = () => {
       <div>
         <h2 className="text-xl font-bold flex items-center gap-2.5" style={{ color: 'var(--text-primary)', fontFamily: 'Poppins,sans-serif' }}>
           <span className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-            style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+            style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
             <CalendarDays size={16} strokeWidth={2} />
           </span>
           Period Tracker
@@ -84,9 +84,9 @@ const Tracker = () => {
         {msg && (
           <div className="mb-5 p-3 rounded-2xl text-sm"
             style={{
-              background: msg.startsWith('✅') ? 'rgba(16,185,129,0.08)' : 'rgba(201,79,104,0.08)',
-              border: msg.startsWith('✅') ? '1px solid rgba(16,185,129,0.25)' : '1px solid rgba(201,79,104,0.20)',
-              color: msg.startsWith('✅') ? '#10b981' : '#C94F68',
+              background: msg.startsWith('✅') ? 'rgba(16,185,129,0.08)' : 'rgba(111,92,208,0.08)',
+              border: msg.startsWith('✅') ? '1px solid rgba(16,185,129,0.25)' : '1px solid rgba(111,92,208,0.20)',
+              color: msg.startsWith('✅') ? '#10b981' : '#6F5CD0',
             }}>
             {msg}
           </div>
@@ -189,7 +189,7 @@ const Tracker = () => {
               <div key={c._id || i} className="panel hover:-translate-y-0.5 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-white shrink-0"
-                    style={{ background: 'linear-gradient(135deg,#E87A90,#C94F68)', boxShadow: '0 4px 12px rgba(201,79,104,0.30)' }}>
+                    style={{ background: 'linear-gradient(135deg,#A596F0,#6F5CD0)', boxShadow: '0 4px 12px rgba(111,92,208,0.30)' }}>
                     <CalendarDays size={16} strokeWidth={2} />
                   </div>
                   <div>
@@ -211,9 +211,9 @@ const Tracker = () => {
                   <FlowBadge cycle={c} />
                   <button onClick={() => handleDelete(c._id)}
                     className="w-7 h-7 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                    style={{ background: 'rgba(201,79,104,0.08)', border: '1px solid rgba(201,79,104,0.15)' }}
+                    style={{ background: 'rgba(111,92,208,0.08)', border: '1px solid rgba(111,92,208,0.15)' }}
                     title="Delete">
-                    <Trash2 size={12} style={{ color: '#C94F68' }} />
+                    <Trash2 size={12} style={{ color: '#6F5CD0' }} />
                   </button>
                 </div>
               </div>

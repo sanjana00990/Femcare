@@ -36,10 +36,10 @@ const Login = () => {
       <button onClick={toggleTheme} title={isDark ? 'Light mode' : 'Dark mode'}
         className="fixed top-5 right-5 z-50 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
         style={{
-          background: isDark ? 'linear-gradient(135deg,#5C2038,#7A3050)' : 'linear-gradient(135deg,#FDE8EC,#FBCFDA)',
-          border: `1px solid ${isDark ? 'rgba(232,122,144,0.40)' : 'rgba(201,79,104,0.28)'}`,
-          color: isDark ? '#F4A4B0' : '#C94F68',
-          boxShadow: isDark ? '0 0 14px rgba(180,40,70,0.40)' : '0 0 10px rgba(201,79,104,0.15)',
+          background: isDark ? 'linear-gradient(135deg,#383055,#4A426B)' : 'linear-gradient(135deg,#EEEAFB,#E3DDF7)',
+          border: `1px solid ${isDark ? 'rgba(165,150,240,0.40)' : 'rgba(111,92,208,0.28)'}`,
+          color: isDark ? '#A596F0' : '#6F5CD0',
+          boxShadow: isDark ? '0 0 14px rgba(111,92,208,0.30)' : '0 0 10px rgba(111,92,208,0.18)',
         }}>
         {isDark ? <Sun size={15} strokeWidth={2.2} /> : <Moon size={15} strokeWidth={2} />}
       </button>
@@ -51,18 +51,18 @@ const Login = () => {
             background: isDark ? 'rgba(52,20,34,0.90)' : 'rgba(255,255,255,0.88)',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
-            border: `1px solid ${isDark ? 'rgba(232,122,144,0.22)' : 'rgba(201,79,104,0.14)'}`,
+            border: `1px solid ${isDark ? 'rgba(165,150,240,0.22)' : 'rgba(111,92,208,0.14)'}`,
             boxShadow: isDark
-              ? '0 24px 60px rgba(90,20,40,0.50), 0 8px 24px rgba(60,10,25,0.40)'
-              : '0 24px 60px rgba(201,79,104,0.12), 0 8px 24px rgba(201,79,104,0.06)',
+              ? '0 24px 60px rgba(21,18,31,0.50), 0 8px 24px rgba(14,12,22,0.40)'
+              : '0 24px 60px rgba(111,92,208,0.08), 0 8px 24px rgba(111,92,208,0.04)',
           }}>
 
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white mx-auto mb-5"
               style={{
-                background: 'linear-gradient(135deg, #C94F68 0%, #E87A90 100%)',
-                boxShadow: '0 8px 24px rgba(201,79,104,0.45)',
+                background: 'linear-gradient(135deg, #6F5CD0 0%, #A596F0 100%)',
+                boxShadow: '0 8px 24px rgba(111,92,208,0.40)',
               }}>
               <Heart size={24} strokeWidth={2.5} fill="white" />
             </div>
@@ -76,7 +76,7 @@ const Login = () => {
 
           {error && (
             <div className="mb-5 p-3 rounded-2xl text-sm flex items-center gap-2"
-              style={{ background: 'rgba(201,79,104,0.10)', border: '1px solid rgba(201,79,104,0.25)', color: '#C94F68' }}>
+              style={{ background: 'rgba(111,92,208,0.10)', border: '1px solid rgba(111,92,208,0.25)', color: '#6F5CD0' }}>
               ⚠️ {error}
             </div>
           )}

@@ -1,201 +1,370 @@
-# FemCare AI — Women's Wellness Platform
+# FemCare AI
 
-A comprehensive women's health and wellness platform powered by AI, built with **React**, **Node.js/Express**, and **MongoDB**. FemCare AI provides intelligent cycle tracking, symptom analysis, personalised health insights, and nearby healthcare provider discovery.
+FemCare AI is a full-stack women’s wellness and health tracking platform designed to help users manage menstrual health, track hormonal symptoms, receive personalized health insights, and discover nearby medical support. The platform combines clinical symptom analysis, cycle forecasting, lifestyle recommendations, and location-aware care discovery into a single user-friendly experience.
 
----
-
-## ✨ Features
-
-### 🩺 Clinical Symptom Checker
-- AI-powered multi-step symptom assessment
-- Condition detection for PCOS, PCOD, Menopause, and general wellness
-- Detailed clinical reports with lab test suggestions and lifestyle modifications
-
-### 📅 Period Tracker
-- Log menstrual cycle data with start/end dates
-- Automatic cycle phase detection (Menstrual, Follicular, Ovulation, Luteal)
-- Next period prediction based on historical averages
-
-### 📊 Dashboard
-- Real-time cycle day, phase, and next period display
-- AI health insights personalised to your condition
-- Recent symptom severity tracking
-- Quick action cards for fast navigation
-
-### 📓 Symptom Journal
-- Daily symptom logging with severity levels
-- Historical symptom review
-
-### 📈 Cycle Insights
-- Trend analysis across cycles
-- Pattern recognition for symptoms
-
-### 🥗 Diet & Nutrition
-- Condition-specific dietary recommendations
-- Phase-aware nutrition guidance
-
-### 🏋️ Exercise
-- Personalised workout suggestions
-- Phase-appropriate exercise intensity
-
-### 📚 Learn
-- Educational health content library
-- Women's health articles and resources
-
-### 📄 Reports
-- Printable clinical assessment reports
-- Comprehensive health summaries
-
-### 🏥 Nearby Healthcare Providers
-- **Auto-detect user location** via browser geolocation
-- **Manual search** by city, area, or pincode
-- Fetches **real nearby hospitals** from OpenStreetMap (Overpass API)
-- Shows **top 5 nearest** gynaecologists, multispeciality hospitals, maternity hospitals, fertility centers, and women's health clinics
-- **Auto-expands search radius** (5km → 10km → 15km → 25km) to guarantee minimum 3 results
-- Interactive **Leaflet map** with color-coded markers by specialty
-- **Filter chips**: Top Rated, Open Now, Multispeciality
-- **Sort by**: Distance, Rating, Reviews
-- Each result card shows: name, specialty, rating, reviews, distance, address, phone, opening hours, open/closed status
-- **Directions** (Google Maps) and **Book/Info** action buttons
-- Fallback to well-known hospitals if API is unavailable
-- Suggested nearby cities and online consultation options in empty states
+This project was developed as a modern health-tech application using a React frontend, Node.js/Express backend, and MongoDB database, with a strong emphasis on usability, privacy, and responsive design. It is built to demonstrate practical implementation of healthcare-focused product features in a production-ready web app architecture.
 
 ---
 
-## 🛠️ Tech Stack
+## Project Overview
 
-| Layer      | Technology                                      |
-|------------|--------------------------------------------------|
-| Frontend   | React 18, Vite, Tailwind CSS                    |
-| Backend    | Node.js, Express.js                              |
-| Database   | MongoDB Atlas (Mongoose)                         |
-| Maps       | Leaflet + React-Leaflet, OpenStreetMap           |
-| Geocoding  | Nominatim (OpenStreetMap) + Overpass API         |
-| Charts     | Chart.js + react-chartjs-2                       |
-| Icons      | Lucide React                                     |
-| Auth       | JWT (JSON Web Tokens)                            |
-| Deployment | Vercel (frontend + serverless backend)           |
+FemCare AI serves as a digital wellness assistant for women by offering:
+
+- Menstrual cycle tracking and prediction
+- Symptom logging and clinical risk assessment
+- Personalized recommendations for nutrition and exercise
+- AI-inspired health insights based on cycle behavior and symptom patterns
+- Educational content on common women’s health conditions
+- Local healthcare provider discovery using browser geolocation and real-time map data
+
+The product is designed for both daily health management and decision support, making it relevant for personal wellness tracking and early awareness of recurring symptoms.
 
 ---
 
-## 🚀 Getting Started
+## Core Features Implemented
+
+### 1. Secure Authentication and User Management
+- User registration and login with email + password
+- JWT-based session handling
+- Protected routes to restrict access to personalized health data
+- User profile context maintained in frontend state
+- Fallback in-memory authentication flow for local/demo environments
+
+Technologies used:
+- React + Context API
+- Express.js
+- JWT
+- bcryptjs
+- MongoDB with Mongoose
+
+### 2. Period and Cycle Tracking
+- Log menstrual cycle start date and end date
+- Track flow intensity and notes
+- Calculate cycle length when enough data is available
+- Determine current cycle day and reproductive phase
+- Predict next period date based on historical averages
+- Display cycle history with automated summaries
+
+Technologies used:
+- React frontend state management
+- Express REST APIs
+- MongoDB schemas for cycle tracking
+- JavaScript date logic and data calculations
+
+### 3. Personal Dashboard
+- Custom wellness dashboard with cycle status and health summary
+- Displays current cycle day, phase, next period prediction, and average cycle length
+- Surfaces quick access actions for core features
+- Combines local and backend data for a streamlined user experience
+- Uses dynamic cards and insight sections for a polished dashboard UX
+
+Technologies used:
+- React
+- Vite
+- Tailwind CSS
+- Custom component architecture
+- Axios API integration
+
+### 4. Clinical Symptom Checker and Health Assessment
+- Multi-step symptom questionnaire covering basic health, menstrual health, physical symptoms, and mood-related concerns
+- Rule-based clinical scoring engine for conditions such as:
+  - PCOS / PCOD
+  - Menopause / perimenopause
+  - General wellness profile
+- Generates structured health reports with:
+  - Primary condition assessment
+  - Confidence score
+  - Narrative explanation
+  - Recommended lab tests
+  - Lifestyle suggestions
+  - Treatment guidance
+- Provides print-ready professional report output
+
+Technologies used:
+- React form-driven interface
+- JavaScript scoring logic
+- Tailwind styling
+- LocalStorage persistence for report history
+
+### 5. AI-Inspired Health Insights Engine
+- Analyzes logged cycles and symptoms to generate personalized health insights
+- Detects patterns such as:
+  - Irregular cycles
+  - Possible hormonal imbalance indicators
+  - Frequent fatigue patterns
+  - Symptom clusters related to PCOS or menopause
+- Generates insight cards with age-appropriate health guidance
+
+Technologies used:
+- Express.js route logic
+- MongoDB data aggregation from cycle and symptom records
+- Rule-based recommendation engine
+- React dashboard rendering
+
+### 6. Symptom Journal and Health Logging
+- Log daily symptoms with severity tracking
+- Maintain a visible history of symptom data
+- Supports journaling for mood, physical health, and general well-being
+- Stores entries for trend analysis and dashboard summaries
+
+Technologies used:
+- React state and form handling
+- Express backend endpoints
+- MongoDB symptom schema
+- LocalStorage fallback for demo continuity
+
+### 7. Nutrition and Diet Recommendations
+- Condition-specific diet guidance for common wellness states
+- Personalized food recommendations by user condition and health profile
+- Suggested dietary improvements based on current health needs
+
+Technologies used:
+- Express API route for diet data
+- JavaScript recommendation logic
+- React UI cards for nutritional suggestions
+
+### 8. Exercise and Wellness Guidance
+- Condition-aware exercise plans and movement suggestions
+- Phase-based recommendations aligned with menstrual cycle stages
+- Simple and practical wellness guidance to support daily health routines
+
+Technologies used:
+- Express route-based logic
+- React-based wellness cards
+- Condition and phase filtering
+
+### 9. Educational Health Learning Hub
+- Informational modules covering key women’s health topics
+- Includes sectioned breakdowns for:
+  - PCOS
+  - PCOD
+  - Menopause
+- Each module includes causes, symptoms, diagnostics, complications, and treatment options
+- Links to official health resources for credibility
+
+Technologies used:
+- React accordion components
+- Tailwind styling
+- Structured content model in frontend
+
+### 10. Nearby Healthcare Provider Discovery
+- Detects user location using browser geolocation
+- Lets users search by city or area when needed
+- Uses OpenStreetMap and Overpass APIs to fetch nearby providers
+- Displays healthcare facilities such as gynecologists, maternity centers, fertility clinics, and multispeciality hospitals
+- Shows map markers with provider information and distance
+- Filters by rating, open/closed status, and multispeciality availability
+- Includes sort options by distance, reviews, and rating
+- Offers directions via Google Maps
+
+Technologies used:
+- React + Leaflet
+- react-leaflet
+- OpenStreetMap tiles
+- Nominatim reverse geocoding
+- Overpass API data retrieval
+- JavaScript filtering and sorting logic
+- Express backend integration
+
+### 11. Theme Support and Responsive UI
+- Dark and light mode toggle
+- Glassmorphism-inspired visual design with modern color palette
+- Responsive layouts across desktop and mobile screens
+- Consistent component patterns across all major views
+
+Technologies used:
+- React Context for theme management
+- Tailwind CSS
+- Custom CSS variables and design tokens
+
+### 12. Offline-Friendly Data Handling
+- LocalStorage-based fallback for cycle tracking, reports, and journal entry experience
+- Maintains app continuity in environments where backend connectivity is limited
+- Improves demo readiness and resilience
+
+Technologies used:
+- Browser localStorage API
+- Frontend fallback logic
+
+---
+
+## Feature-to-Technology Matrix
+
+| Feature | Description | Primary Technologies |
+| --- | --- | --- |
+| Authentication | Secure login and protected access | React, Express, JWT, bcryptjs |
+| Cycle Tracking | Log periods, predict cycle length, phase tracking | React, Node.js, MongoDB |
+| Dashboard | Health summary and personalized insights | React, Tailwind CSS |
+| Symptom Checker | Questionnaire-based assessment | React, JavaScript scoring engine |
+| Insights Engine | Personalized trend-based recommendations | Node.js, MongoDB, React |
+| Journal | Daily symptom logging | React, Express, MongoDB |
+| Nutrition | Diet and wellness guidance | Express, React |
+| Exercise | Personalized wellness plans | Express, React |
+| Learn Module | Educational content | React, Tailwind CSS |
+| Doctors / Clinics | Nearby medical provider discovery | React, Leaflet, OpenStreetMap APIs |
+| Reporting | Professional printable summary report | React, DOM printing, local storage |
+| Theme UI | Responsive design and dark mode | Tailwind CSS, React Context |
+
+---
+
+## Tech Stack
+
+### Frontend
+- React 18
+- Vite
+- Tailwind CSS
+- React Router DOM
+- React-Leaflet
+- Chart.js + react-chartjs-2
+- Lucide React icons
+- Axios for API communication
+
+### Backend
+- Node.js
+- Express.js
+- JWT authentication
+- bcryptjs for password hashing
+- Mongoose for MongoDB modeling
+
+### Database
+- MongoDB
+- Mongoose ODM
+
+### APIs and Integrations
+- OpenStreetMap Overpass API for healthcare provider search
+- Nominatim reverse geocoding
+- Google Maps directions links
+
+### Deployment and DevOps
+- Vercel deployment configuration
+- npm-based package management
+- Environment configuration using .env files
+
+---
+
+## Architecture Overview
+
+The application follows a modern three-layer architecture:
+
+- Frontend: Single-page React application for user interaction and presentation
+- Backend: REST API built with Express to manage auth, health data, recommendations, and provider lookup
+- Database: MongoDB for structured persistence of users, cycles, symptoms, and cached provider results
+
+This architecture keeps the application modular, scalable, and easy to extend with new health features, AI models, or integrations.
+
+---
+
+## Project Structure
+
+```bash
+femcare/
+├── api/
+│   └── index.js
+├── backend/
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── models/
+│   │   ├── Cycle.js
+│   │   ├── DoctorsCache.js
+│   │   ├── Symptom.js
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── cycle.js
+│   │   ├── diet.js
+│   │   ├── doctors.js
+│   │   ├── exercise.js
+│   │   ├── insights.js
+│   │   ├── report.js
+│   │   └── symptoms.js
+│   ├── package.json
+│   ├── server.js
+│   └── test.js
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   └── ...
+│   ├── package.json
+│   ├── vite.config.js
+│   └── ...
+├── index.html
+├── package.json
+├── README.md
+├── vercel.json
+└── ...
+```
+
+---
+
+## Setup and Run Instructions
 
 ### Prerequisites
 - Node.js 18+
-- MongoDB Atlas account (or local MongoDB)
+- npm
+- MongoDB instance or MongoDB Atlas connection string
 
-### Installation
+### Install Dependencies
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/IDT-project.git
-cd IDT-project
-
-# Install backend dependencies
-cd backend
 npm install
-
-# Install frontend dependencies
-cd ../frontend
-npm install
+cd frontend && npm install
+cd ../backend && npm install
 ```
 
-### Environment Setup
+### Environment Variables
 
-Create a `.env` file in the `backend/` directory:
+Create a `.env` file inside the `backend` directory:
 
 ```env
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+JWT_SECRET=your_secret_key
+PORT=5001
 ```
 
-### Running Locally
+### Run the Application
 
 ```bash
-# Terminal 1 — Start backend (port 5001)
+# Start backend
 cd backend
 npm run dev
 
-# Terminal 2 — Start frontend (port 5173)
+# Start frontend in a second terminal
 cd frontend
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+The frontend is typically available at:
+- http://localhost:5173
+
+The backend API runs on:
+- http://localhost:5001
 
 ---
 
-## 📁 Project Structure
+## Deployment
 
-```
-IDT-project/
-├── frontend/
-│   └── src/
-│       ├── api/
-│       │   └── axios.js           # Axios instance with auth interceptor
-│       ├── components/
-│       │   └── Layout.jsx         # Sidebar + header layout shell
-│       ├── context/
-│       │   ├── AuthContext.jsx     # Authentication state
-│       │   └── ThemeContext.jsx    # Dark/light mode toggle
-│       ├── pages/
-│       │   ├── Dashboard.jsx      # Main dashboard with KPIs
-│       │   ├── Doctors.jsx        # Nearby healthcare providers
-│       │   ├── doctorsHelpers.js  # Overpass API fetch + utilities
-│       │   ├── Symptoms.jsx       # AI symptom checker
-│       │   ├── Tracker.jsx        # Period tracker
-│       │   ├── Journal.jsx        # Symptom journal
-│       │   ├── Insights.jsx       # Cycle insights
-│       │   ├── Diet.jsx           # Diet recommendations
-│       │   ├── Exercise.jsx       # Exercise plans
-│       │   ├── Report.jsx         # Clinical reports
-│       │   ├── Learn.jsx          # Health education
-│       │   ├── Login.jsx          # Auth — login
-│       │   └── Register.jsx       # Auth — register
-│       ├── App.jsx                # Router + protected routes
-│       ├── main.jsx               # Entry point
-│       └── index.css              # Design system (glassmorphic)
-├── backend/
-│   ├── routes/
-│   │   ├── auth.js                # Register/login endpoints
-│   │   ├── cycle.js               # Period cycle CRUD
-│   │   ├── symptoms.js            # Symptom logging
-│   │   ├── insights.js            # AI insights engine
-│   │   ├── diet.js                # Diet recommendations
-│   │   ├── exercise.js            # Exercise suggestions
-│   │   ├── report.js              # Report generation
-│   │   └── doctors.js             # Nearby doctors API
-│   ├── middleware/
-│   │   └── auth.js                # JWT auth middleware
-│   ├── models/                    # Mongoose schemas
-│   └── server.js                  # Express app setup
-└── vercel.json                    # Vercel deployment config
-```
+The project is configured for deployment on Vercel with:
+- Vite frontend build
+- Express backend support via serverless API route
+- MongoDB Atlas for cloud data persistence
+
+The deployment setup is defined in `vercel.json` and supports both frontend delivery and API routing.
 
 ---
 
-## 🎨 Design System
+## Resume-Friendly Summary
 
-FemCare AI uses a premium **glassmorphic design system** with:
-
-- **Light mode**: Rose & mauve palette with glass blur panels
-- **Dark mode**: Deep plum feminine aesthetic
-- Custom CSS properties for seamless theme switching
-- Smooth micro-animations and hover effects
-- Premium typography (DM Sans + Poppins)
-- Responsive sidebar navigation
+FemCare AI is a full-stack women’s health and wellness platform that combines menstrual cycle tracking, clinical symptom assessment, personalized insights, nutrition and exercise guidance, educational content, and nearby healthcare discovery into one modern digital experience. Built using React, Node.js, Express, MongoDB, Tailwind CSS, and third-party health and mapping APIs, the project demonstrates end-to-end product development in healthcare technology, user experience design, API integration, and responsive web application architecture.
 
 ---
 
-## 🌐 Deployment
+## License
 
-Deployed on **Vercel** with:
-- Frontend: Static build via Vite
-- Backend: Serverless functions via `api/` directory
-- Database: MongoDB Atlas cloud
-
----
-
-## 📝 License
-
-This project is for educational purposes as part of the IDT course project.
+This project is intended for educational and portfolio purposes.

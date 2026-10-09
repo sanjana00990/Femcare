@@ -12,10 +12,10 @@ const chartOptions = (isDark = false) => ({
   plugins: {
     legend: { display: false },
     tooltip: {
-      backgroundColor: isDark ? '#341422' : '#fff',
-      titleColor: isDark ? '#F4A4B0' : '#8B2D40',
-      bodyColor:  isDark ? '#E8C4CC' : '#B8A0AA',
-      borderColor: 'rgba(201,79,104,0.20)',
+      backgroundColor: isDark ? '#1F1B2E' : '#fff',
+      titleColor: isDark ? '#A596F0' : '#2B2540',
+      bodyColor:  isDark ? '#A9A2C4' : '#665E80',
+      borderColor: 'rgba(111,92,208,0.20)',
       borderWidth: 1,
       cornerRadius: 12,
       padding: 10,
@@ -23,12 +23,12 @@ const chartOptions = (isDark = false) => ({
   },
   scales: {
     x: {
-      grid:  { color: 'rgba(201,79,104,0.06)', drawBorder: false },
-      ticks: { color: '#B8A0AA', font: { size: 11 } },
+      grid:  { color: 'rgba(111,92,208,0.06)', drawBorder: false },
+      ticks: { color: '#665E80', font: { size: 11 } },
     },
     y: {
-      grid:  { color: 'rgba(201,79,104,0.06)', drawBorder: false },
-      ticks: { color: '#B8A0AA', font: { size: 11 } },
+      grid:  { color: 'rgba(111,92,208,0.06)', drawBorder: false },
+      ticks: { color: '#665E80', font: { size: 11 } },
     },
   },
 });
@@ -106,7 +106,7 @@ const Insights = () => {
   if (loading) return (
     <div className="flex justify-center py-12">
       <div className="w-9 h-9 border-[3px] border-t-transparent rounded-full animate-spin"
-        style={{ borderColor: '#C94F68', borderTopColor: 'transparent' }} />
+        style={{ borderColor: '#6F5CD0', borderTopColor: 'transparent' }} />
     </div>
   );
 
@@ -121,12 +121,12 @@ const Insights = () => {
     datasets: [{
       label: 'Cycle / Period Length',
       data: sortedCyclesForChart.map(c => c.cycleLength || 28),
-      borderColor: '#C94F68',
-      backgroundColor: 'rgba(201,79,104,0.10)',
+      borderColor: '#6F5CD0',
+      backgroundColor: 'rgba(111,92,208,0.10)',
       borderWidth: 2.5,
       tension: 0.45,
       fill: true,
-      pointBackgroundColor: '#C94F68',
+      pointBackgroundColor: '#6F5CD0',
       pointBorderColor: '#fff',
       pointBorderWidth: 2,
       pointRadius: 5,
@@ -137,7 +137,7 @@ const Insights = () => {
     labels: data.symptoms.slice(0, 7).map(s => s.label),
     datasets: [{
       data: data.symptoms.slice(0, 7).map(s => s.value),
-      backgroundColor: ['#C94F68','#E87A90','#F4A4B0','#B8A0AA','#D4B8C0','#8B2D40','#A03650'],
+      backgroundColor: ['#6F5CD0','#A596F0','#C5C0D8','#A9A2C4','#E3DDF7','#5A47BA','#665E80'],
       borderRadius: 8,
       borderSkipped: false,
     }],
@@ -160,7 +160,7 @@ const Insights = () => {
       {/* Header */}
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-          style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+          style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
           <LineChart size={16} strokeWidth={2} />
         </div>
         <div>

@@ -185,10 +185,10 @@ const PillGroup = ({ options, value, onChange, multi = false }) => (
           }}
           className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
           style={{
-            background: active ? 'linear-gradient(135deg,#C94F68,#E87A90)' : 'var(--bg-input)',
+            background: active ? 'linear-gradient(135deg,#6F5CD0,#A596F0)' : 'var(--bg-input)',
             color: active ? '#fff' : 'var(--text-primary)',
             border: `1.5px solid ${active ? 'transparent' : 'var(--border-soft)'}`,
-            boxShadow: active ? '0 4px 14px rgba(201,79,104,0.35)' : 'none',
+            boxShadow: active ? '0 4px 14px rgba(111,92,208,0.30)' : 'none',
           }}>
           {opt.label}
         </button>
@@ -253,7 +253,7 @@ const Symptoms = () => {
           <div className="flex items-center gap-2 shrink-0">
             <div className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all"
               style={{
-                background: i < step ? 'linear-gradient(135deg,#C94F68,#E87A90)' : i === step ? '#C94F68' : 'var(--bg-input)',
+                background: i < step ? 'linear-gradient(135deg,#6F5CD0,#A596F0)' : i === step ? '#6F5CD0' : 'var(--bg-input)',
                 color: i <= step ? '#fff' : 'var(--text-muted)',
                 border: i > step ? '1.5px solid var(--border-soft)' : 'none',
               }}>
@@ -266,7 +266,7 @@ const Symptoms = () => {
           </div>
           {i < STEPS.length - 1 && (
             <div className="flex-1 h-0.5 mx-2"
-              style={{ background: i < step ? 'linear-gradient(90deg,#C94F68,#E87A90)' : 'var(--border-soft)' }} />
+              style={{ background: i < step ? 'linear-gradient(90deg,#6F5CD0,#A596F0)' : 'var(--border-soft)' }} />
           )}
         </React.Fragment>
       ))}
@@ -278,13 +278,13 @@ const Symptoms = () => {
     const { answers: ans } = result;
     const ph = ans.physical || [];
     const m  = ans.mood     || [];
-    const primaryColor = result.primary.includes('PCOS') || result.primary.includes('PCOD') ? '#C94F68'
+    const primaryColor = result.primary.includes('PCOS') || result.primary.includes('PCOD') ? '#6F5CD0'
       : result.primary.includes('Meno') || result.primary.includes('Peri') ? '#8B5C8B' : '#4DB88A';
     const reportDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
 
     const SectionTitle = ({ children }) => (
       <div className="flex items-center gap-2 pt-2 pb-2 mb-3" style={{ borderBottom: '1.5px solid var(--border-soft)' }}>
-        <div className="w-1 h-4 rounded-full shrink-0" style={{ background: 'linear-gradient(180deg,#C94F68,#E87A90)' }} />
+        <div className="w-1 h-4 rounded-full shrink-0" style={{ background: 'linear-gradient(180deg,#6F5CD0,#A596F0)' }} />
         <h3 className="text-[11px] font-black uppercase tracking-[0.15em]" style={{ color: 'var(--text-muted)' }}>{children}</h3>
       </div>
     );
@@ -296,7 +296,7 @@ const Symptoms = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-              style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+              style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
               <CheckCircle2 size={16} strokeWidth={2.5} />
             </div>
             <div>
@@ -385,7 +385,7 @@ const Symptoms = () => {
             <SectionTitle>Differential Diagnosis — Likelihood Scores</SectionTitle>
             <div className="space-y-3">
               {[
-                { label: 'Polycystic Ovary Syndrome (PCOS) / PCOD', score: result.pcosPct, color: '#C94F68', basis: 'Rotterdam Criteria: Oligo-anovulation, hyperandrogenism, polycystic morphology' },
+                { label: 'Polycystic Ovary Syndrome (PCOS) / PCOD', score: result.pcosPct, color: '#6F5CD0', basis: 'Rotterdam Criteria: Oligo-anovulation, hyperandrogenism, polycystic morphology' },
                 { label: 'Menopause / Perimenopause', score: result.menoPct, color: '#8B5C8B', basis: 'Vasomotor symptoms, hormonal decline, menstrual cessation' },
                 { label: 'Normal Hormonal Variation', score: Math.max(5, 100 - result.pcosPct - result.menoPct), color: '#4DB88A', basis: 'Within-range fluctuation without pathological pattern' },
               ].map(d => (
@@ -436,8 +436,8 @@ const Symptoms = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {ph.map(key => (
                       <div key={key} className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl"
-                        style={{ background: 'rgba(201,79,104,0.06)', border: '1px solid rgba(201,79,104,0.16)' }}>
-                        <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#C94F68' }} />
+                        style={{ background: 'rgba(111,92,208,0.06)', border: '1px solid rgba(111,92,208,0.16)' }}>
+                        <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#6F5CD0' }} />
                         <span className="text-xs" style={{ color: 'var(--text-primary)' }}>{PHYSICAL_LABELS[key] || key}</span>
                       </div>
                     ))}
@@ -475,7 +475,7 @@ const Symptoms = () => {
                 <div key={i} className="flex items-start gap-3 px-4 py-3 rounded-xl"
                   style={{ background: 'var(--bg-input)', border: '1px solid var(--border-soft)' }}>
                   <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-black text-white shrink-0 mt-0.5"
-                    style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)', minWidth: '20px' }}>{i + 1}</span>
+                    style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)', minWidth: '20px' }}>{i + 1}</span>
                   <div>
                     <p className="text-sm font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>{t.test}</p>
                     <p className="text-[11px] mt-0.5 leading-relaxed" style={{ color: 'var(--text-muted)' }}>{t.note}</p>
@@ -505,9 +505,9 @@ const Symptoms = () => {
             <div className="space-y-2">
               {result.recs.map((r, i) => (
                 <div key={i} className="flex items-start gap-3 px-4 py-3 rounded-xl"
-                  style={{ background: 'rgba(201,79,104,0.05)', border: '1px solid rgba(201,79,104,0.14)' }}>
+                  style={{ background: 'rgba(111,92,208,0.05)', border: '1px solid rgba(111,92,208,0.14)' }}>
                   <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-black text-white shrink-0 mt-0.5"
-                    style={{ background: '#C94F68', minWidth: '20px' }}>{i + 1}</span>
+                    style={{ background: '#6F5CD0', minWidth: '20px' }}>{i + 1}</span>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{r}</p>
                 </div>
               ))}
@@ -544,7 +544,7 @@ const Symptoms = () => {
       {/* Header */}
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-          style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+          style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
           <Activity size={16} strokeWidth={2} />
         </div>
         <div>

@@ -6,12 +6,12 @@ import { CalendarDays, Activity, AlertCircle, CheckCircle2, Sparkles, Heart, Tre
 /* ─── Helpers ─────────────────────────────────────────── */
 const phaseInfo = (phase) => {
   const map = {
-    Menstrual:  { emoji: '🌸', label: 'Rest & Restore',   color: '#E87A90', bg: 'rgba(232,122,144,0.12)' },
-    Follicular: { emoji: '🌿', label: 'Rise & Energise',  color: '#6ECC9A', bg: 'rgba(110,204,154,0.12)' },
-    Ovulation:  { emoji: '✨', label: 'Peak Power',        color: '#C94F68', bg: 'rgba(201,79,104,0.12)' },
-    Luteal:     { emoji: '🌙', label: 'Wind Down',         color: '#B8A0AA', bg: 'rgba(184,160,170,0.12)' },
+    Menstrual:  { emoji: '🌸', label: 'Rest & Restore',   color: '#D9A0C0', bg: 'rgba(217,160,192,0.12)' },
+    Follicular: { emoji: '🌿', label: 'Rise & Energise',  color: '#A99BEA', bg: 'rgba(169,155,234,0.12)' },
+    Ovulation:  { emoji: '✨', label: 'Peak Power',        color: '#7CC3A6', bg: 'rgba(124,195,166,0.12)' },
+    Luteal:     { emoji: '🌙', label: 'Wind Down',         color: '#6F5CD0', bg: 'rgba(111,92,208,0.12)' },
   };
-  return map[phase] || { emoji: '💕', label: 'Tracking…', color: '#E87A90', bg: 'rgba(232,122,144,0.10)' };
+  return map[phase] || {label: 'Tracking…', color: '#6F5CD0', bg: 'rgba(111,92,208,0.10)' };
 };
 
 const greeting = () => {
@@ -20,6 +20,7 @@ const greeting = () => {
   if (h < 18) return 'Good afternoon';
   return 'Good evening';
 };
+
 
 /* ── KPI Card ──────────────────────────────────────────── */
 const KpiCard = ({ icon: Icon, iconGrad, badge, badgeColor, label, value, sub, delay = 0 }) => (
@@ -49,8 +50,8 @@ const KpiCard = ({ icon: Icon, iconGrad, badge, badgeColor, label, value, sub, d
 const InsightRow = ({ icon, text, delay = 0 }) => (
   <div className="flex gap-3 p-3.5 rounded-2xl animate-fade-up"
     style={{
-      background: 'rgba(201,79,104,0.05)',
-      border: '1px solid rgba(201,79,104,0.10)',
+      background: 'rgba(111,92,208,0.05)',
+      border: '1px solid rgba(111,92,208,0.10)',
       animationDelay: `${delay}ms`,
     }}>
     <span className="text-lg shrink-0 mt-0.5">{icon}</span>
@@ -62,11 +63,11 @@ const InsightRow = ({ icon, text, delay = 0 }) => (
 /* ── Severity Bar ──────────────────────────────────────── */
 const SeverityBar = ({ type, severity, delay = 0 }) => {
   const pct = (severity / 10) * 100;
-  const color = severity > 6 ? '#E87A90' : severity > 3 ? '#B8A0AA' : '#6ECC9A';
+  const color = severity > 6 ? '#6F5CD0' : severity > 3 ? '#A9A2C4' : '#7CC3A6';
   return (
     <div className="flex items-center gap-4 animate-fade-up" style={{ animationDelay: `${delay}ms` }}>
       <div className="w-28 text-sm font-medium truncate capitalize" style={{ color: 'var(--text-primary)' }}>{type}</div>
-      <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(201,79,104,0.10)' }}>
+      <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(111,92,208,0.10)' }}>
         <div className="h-full rounded-full transition-all duration-700"
           style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${color}88, ${color})` }} />
       </div>
@@ -216,7 +217,7 @@ const Dashboard = () => {
   if (loading) return (
     <div className="flex flex-col items-center justify-center h-64 gap-4">
       <div className="w-10 h-10 rounded-full border-[3px] border-t-transparent animate-spin"
-        style={{ borderColor: '#C94F68', borderTopColor: 'transparent' }} />
+        style={{ borderColor: '#6F5CD0', borderTopColor: 'transparent' }} />
       <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Loading your wellness data…</p>
     </div>
   );
@@ -233,11 +234,11 @@ const Dashboard = () => {
       {/* ── Hero greeting ───────────────────────────────── */}
       <div className="relative overflow-hidden rounded-[28px] p-7 animate-fade-up"
         style={{
-          background: 'linear-gradient(135deg, rgba(201,79,104,0.12) 0%, rgba(232,122,144,0.08) 60%, rgba(184,160,170,0.06) 100%)',
-          border: '1px solid rgba(201,79,104,0.16)',
+          background: 'linear-gradient(135deg, rgba(111,92,208,0.08) 0%, rgba(165,150,240,0.06) 60%, rgba(238,234,251,0.06) 100%)',
+          border: '1px solid rgba(111,92,208,0.12)',
         }}>
         <div className="absolute right-0 top-0 w-60 h-60 rounded-full opacity-15 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #C94F68 0%, #E87A90 100%)' }} />
+          style={{ background: 'radial-gradient(circle, #6F5CD0 0%, #A596F0 100%)' }} />
 
         <div className="flex items-center justify-between relative">
           <div>
@@ -249,7 +250,7 @@ const Dashboard = () => {
             </h1>
             <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'var(--text-muted)' }}>
               You're on{' '}
-              <span className="font-bold text-base px-2 py-0.5 rounded-lg" style={{ background: 'rgba(201,79,104,0.15)', color: 'var(--accent)' }}>
+              <span className="font-bold text-base px-2 py-0.5 rounded-lg" style={{ background: 'rgba(111,92,208,0.12)', color: 'var(--accent)' }}>
                 {cycleDay ? `Day ${cycleDay}` : 'Day —'}
               </span>{' '}
               of your cycle.{' '}
@@ -269,16 +270,16 @@ const Dashboard = () => {
 
       {/* ── KPI Cards ───────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        <KpiCard icon={CalendarDays} iconGrad="linear-gradient(135deg,#C94F68,#E87A90)"
-          badge={`Day ${cycleDay || '?'}`} badgeColor="#C94F68"
+        <KpiCard icon={CalendarDays} iconGrad="linear-gradient(135deg,#6F5CD0,#A596F0)"
+          badge={`Day ${cycleDay || '?'}`} badgeColor="#6F5CD0"
           label="Cycle Day" value={cycleDay ? `Day ${cycleDay}` : '—'} sub={`of ${prediction?.avgCycleLength || 28}-day cycle`} delay={0} />
-        <KpiCard icon={Activity} iconGrad="linear-gradient(135deg,#E87A90,#F4A4B0)"
-          badge={phase || 'Tracking'} badgeColor="#E87A90"
+        <KpiCard icon={Activity} iconGrad="linear-gradient(135deg,#A99BEA,#C5C0D8)"
+          badge={phase || 'Tracking'} badgeColor="#A99BEA"
           label="Current Phase" value={phase || 'No Data'} sub="Based on logged period" delay={80} />
-        <KpiCard icon={AlertCircle} iconGrad="linear-gradient(135deg,#B8A0AA,#D4B8C0)"
-          badge="Upcoming" badgeColor="#B8A0AA"
+        <KpiCard icon={AlertCircle} iconGrad="linear-gradient(135deg,#A9A2C4,#C5C0D8)"
+          badge="Upcoming" badgeColor="#665E80"
           label="Next Period" value={nextDate} sub="Predicted start date" delay={160} />
-        <KpiCard icon={CheckCircle2} iconGrad="linear-gradient(135deg,#6ECC9A,#4DB88A)"
+        <KpiCard icon={CheckCircle2} iconGrad="linear-gradient(135deg,#7CC3A6,#4DB88A)"
           badge="Avg" badgeColor="#4DB88A"
           label="Cycle Length" value={prediction?.avgCycleLength ? `${prediction.avgCycleLength}d` : '—'} sub="Days average" delay={240} />
       </div>
@@ -298,14 +299,14 @@ const Dashboard = () => {
         <div className="panel flex flex-col gap-4 animate-fade-up" style={{ animationDelay: '300ms' }}>
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+              style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
               <Sparkles size={15} strokeWidth={2} className="text-white" />
             </div>
             <div>
               <h3 className="text-sm font-bold leading-tight" style={{ color: 'var(--text-primary)', fontFamily: 'Poppins,sans-serif' }}>
                 AI Health Insights
               </h3>
-              <p className="text-[10px]" style={{ color: 'var(--text-subtle)' }}>Personalised just for you</p>
+              <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>Personalised just for you</p>
             </div>
           </div>
           <div className="flex flex-col gap-2.5">
@@ -313,7 +314,7 @@ const Dashboard = () => {
               <InsightRow key={idx} icon={insight.icon} text={insight.text} delay={350 + idx * 60} />
             ))}
             {(!data?.insights || data.insights.length === 0) && (
-              <p className="text-sm text-center py-6" style={{ color: 'var(--text-subtle)' }}>
+              <p className="text-sm text-center py-6" style={{ color: 'var(--text-muted)' }}>
                 No insights yet — keep logging! 🌸
               </p>
             )}
@@ -324,14 +325,14 @@ const Dashboard = () => {
         <div className="panel flex flex-col gap-4 animate-fade-up" style={{ animationDelay: '360ms' }}>
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg,#E87A90,#F4A4B0)' }}>
+              style={{ background: 'linear-gradient(135deg,#A596F0,#C5C0D8)' }}>
               <Heart size={15} strokeWidth={2} className="text-white" />
             </div>
             <div>
               <h3 className="text-sm font-bold leading-tight" style={{ color: 'var(--text-primary)', fontFamily: 'Poppins,sans-serif' }}>
                 Recent Symptoms
               </h3>
-              <p className="text-[10px]" style={{ color: 'var(--text-subtle)' }}>Last logged entries</p>
+              <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>Last logged entries</p>
             </div>
           </div>
           <div className="flex flex-col gap-3.5">
@@ -341,8 +342,8 @@ const Dashboard = () => {
             {(!data?.symptoms || data.symptoms.length === 0) && (
               <div className="flex flex-col items-center justify-center py-6 gap-2">
                 <TrendingUp size={28} className="opacity-30" style={{ color: 'var(--accent)' }} strokeWidth={1.4} />
-                <p className="text-sm text-center" style={{ color: 'var(--text-subtle)' }}>No symptoms logged recently.</p>
-                <p className="text-xs text-center" style={{ color: 'var(--text-subtle)' }}>Use the Symptom Checker to get started.</p>
+                <p className="text-sm text-center" style={{ color: 'var(--text-muted)' }}>No symptoms logged recently.</p>
+                <p className="text-xs text-center" style={{ color: 'var(--text-muted)' }}>Use the Symptom Checker to get started.</p>
               </div>
             )}
           </div>

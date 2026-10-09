@@ -75,81 +75,107 @@ const seededReviews = (name) => {
 
 /* ── Fetch from Overpass API ─────────────────────────────────────── */
 const fetchFromOverpass = async (lat, lng, radiusM) => {
-  // Respect 1 req/s fair-use limit
-  await _throttleOverpass();
+  const query = `
+    [out:json][timeout:10];
+    (
+      node["amenity"~"^(hospital|clinic)$"]["name"](around:${radiusM},${lat},${lng});
+      way["amenity"~"^(hospital|clinic)$"]["name"](around:${radiusM},${lat},${lng});
+      node["healthcare"]["name"](around:${radiusM},${lat},${lng});
+    );
+    out center 40;
+  `;
 
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 12000);
+  const mirrors = [
+    'https://overpass-api.de/api/interpreter',
+    'https://overpass.kumi.systems/api/interpreter',
+  ];
 
-  try {
-    const query = `
-      [out:json][timeout:10];
-      (
-        node["amenity"~"hospital|clinic"]["name"](around:${radiusM},${lat},${lng});
-        way["amenity"~"hospital|clinic"]["name"](around:${radiusM},${lat},${lng});
-        node["healthcare"="doctor"]["name"](around:${radiusM},${lat},${lng});
-        node["healthcare:speciality"~"gynaecology|obstetrics|fertility",i]["name"](around:${radiusM},${lat},${lng});
-        way["healthcare:speciality"~"gynaecology|obstetrics|fertility",i]["name"](around:${radiusM},${lat},${lng});
+  for (let i = 0; i < mirrors.length; i++) {
+    const mirrorUrl = mirrors[i];
+    const mirrorHost = new URL(mirrorUrl).hostname;
+
+    // Respect 1 req/s fair-use limit
+    await _throttleOverpass();
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10000);
+    const startTime = Date.now();
+
+    try {
+      const res = await fetch(
+        `${mirrorUrl}?data=${encodeURIComponent(query)}`,
+        {
+          signal: controller.signal,
+          headers: { 'User-Agent': APP_USER_AGENT },
+        }
       );
-      out center 40;
-    `;
+      clearTimeout(timer);
+      const elapsed = Date.now() - startTime;
 
-    const res = await fetch(
-      `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`,
-      {
-        signal: controller.signal,
-        headers: { 'User-Agent': APP_USER_AGENT },
+      if (!res.ok) {
+        console.warn(`[Overpass] Attempt ${i + 1} (${mirrorHost}) HTTP ${res.status} after ${elapsed}ms`);
+        continue;
       }
-    );
-    clearTimeout(timer);
-    const data = await res.json();
 
-    const elements = (data.elements || []).filter(
-      (e) => e.tags?.name && (e.lat || e.center?.lat)
-    );
+      const data = await res.json();
 
-    // Deduplicate by name
-    const seen = new Set();
-    const unique = [];
-    for (const e of elements) {
-      const key = e.tags.name.trim().toLowerCase();
-      if (!seen.has(key)) { seen.add(key); unique.push(e); }
+      if (data.remark && data.remark.includes('error')) {
+        console.warn(`[Overpass] Attempt ${i + 1} (${mirrorHost}) Overpass remark error after ${elapsed}ms: ${data.remark}`);
+        continue;
+      }
+
+      const elements = (data.elements || []).filter(
+        (e) => e.tags?.name && (e.lat || e.center?.lat)
+      );
+
+      // Deduplicate by name
+      const seen = new Set();
+      const unique = [];
+      for (const e of elements) {
+        const key = e.tags.name.trim().toLowerCase();
+        if (!seen.has(key)) { seen.add(key); unique.push(e); }
+      }
+
+      console.log(`[Overpass] Attempt ${i + 1} (${mirrorHost}) succeeded after ${elapsed}ms returning ${unique.length} providers`);
+
+      return unique.map((e) => {
+        const eLat = e.lat ?? e.center?.lat;
+        const eLng = e.lon ?? e.center?.lon;
+        const tags = e.tags;
+        const spec = classifySpec(tags);
+
+        return {
+          id: e.id.toString(),
+          name: tags.name,
+          specialty: spec,
+          lat: eLat,
+          lng: eLng,
+          distance: haversineKm(lat, lng, eLat, eLng),
+          rating: seededRating(tags.name),
+          reviews: seededReviews(tags.name),
+          phone: tags.phone || tags['contact:phone'] || null,
+          hours: tags.opening_hours || null,
+          isOpen: isOpenNow(tags.opening_hours),
+          address:
+            [tags['addr:street'], tags['addr:city'], tags['addr:postcode']]
+              .filter(Boolean)
+              .join(', ') || null,
+          website:
+            tags.website ||
+            `https://www.google.com/maps/search/${encodeURIComponent(tags.name + ' hospital')}`,
+          hasOnlineConsultation: false,
+          isFemaleDoctor: false,
+        };
+      });
+    } catch (err) {
+      clearTimeout(timer);
+      const elapsed = Date.now() - startTime;
+      console.warn(`[Overpass] Attempt ${i + 1} (${mirrorHost}) failed after ${elapsed}ms: ${err.message}`);
     }
-
-    return unique.map((e) => {
-      const eLat = e.lat ?? e.center?.lat;
-      const eLng = e.lon ?? e.center?.lon;
-      const tags = e.tags;
-      const spec = classifySpec(tags);
-
-      return {
-        id: e.id.toString(),
-        name: tags.name,
-        specialty: spec,
-        lat: eLat,
-        lng: eLng,
-        distance: haversineKm(lat, lng, eLat, eLng),
-        rating: seededRating(tags.name),
-        reviews: seededReviews(tags.name),
-        phone: tags.phone || tags['contact:phone'] || null,
-        hours: tags.opening_hours || null,
-        isOpen: isOpenNow(tags.opening_hours),
-        address:
-          [tags['addr:street'], tags['addr:city'], tags['addr:postcode']]
-            .filter(Boolean)
-            .join(', ') || null,
-        website:
-          tags.website ||
-          `https://www.google.com/maps/search/${encodeURIComponent(tags.name + ' hospital')}`,
-        hasOnlineConsultation: false,
-        isFemaleDoctor: false,
-      };
-    });
-  } catch (err) {
-    clearTimeout(timer);
-    console.warn('[Overpass] fetch failed:', err.message);
-    return null; // null => API failed, use fallback
   }
+
+  console.warn('[Overpass] All mirrors failed, returning null');
+  return null; // null => API failed, use fallback
 };
 
 /* ── City-aware fallback hospitals ───────────────────────────────── */

@@ -3,7 +3,7 @@ import api from '../api/axios';
 import { Apple } from 'lucide-react';
 
 const COLUMNS = [
-  { key: 'eat',   label: '✅ Eat More',  accent: '#C94F68', bg: 'rgba(201,79,104,0.07)' },
+  { key: 'eat',   label: '✅ Eat More',  accent: '#6F5CD0', bg: 'rgba(111,92,208,0.07)' },
   { key: 'limit', label: '⚠️ Limit',     accent: '#D4850A', bg: 'rgba(212,133,10,0.07)' },
   { key: 'avoid', label: '🚫 Avoid',     accent: '#B84040', bg: 'rgba(184,64,64,0.07)' },
 ];
@@ -50,7 +50,7 @@ const Diet = () => {
   if (!data) return (
     <div className="flex justify-center py-12">
       <div className="w-9 h-9 border-[3px] border-t-transparent rounded-full animate-spin"
-        style={{ borderColor: '#C94F68', borderTopColor: 'transparent' }} />
+        style={{ borderColor: '#6F5CD0', borderTopColor: 'transparent' }} />
     </div>
   );
 
@@ -61,7 +61,7 @@ const Diet = () => {
       <div>
         <h2 className="text-xl font-bold flex items-center gap-2.5" style={{ color: 'var(--text-primary)', fontFamily: 'Poppins,sans-serif' }}>
           <span className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-            style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+            style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
             <Apple size={16} strokeWidth={2} />
           </span>
           Diet & Nutrition

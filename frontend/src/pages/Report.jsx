@@ -100,7 +100,7 @@ const Report = () => {
   if (!report) return (
     <div className="flex justify-center py-12">
       <div className="w-9 h-9 border-[3px] border-t-transparent rounded-full animate-spin"
-        style={{ borderColor: '#C94F68', borderTopColor: 'transparent' }} />
+        style={{ borderColor: '#6F5CD0', borderTopColor: 'transparent' }} />
     </div>
   );
 
@@ -112,7 +112,7 @@ const Report = () => {
         <div>
           <h2 className="text-xl font-bold flex items-center gap-2.5" style={{ color: 'var(--text-primary)', fontFamily: 'Poppins,sans-serif' }}>
             <span className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-              style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+              style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
               <FileText size={16} strokeWidth={2} />
             </span>
             Medical Report
@@ -133,26 +133,25 @@ const Report = () => {
 
       {/* Printable report */}
       <div id="printable-report" className="bg-white text-gray-900 p-8 rounded-[24px]"
-        style={{ boxShadow: '0 10px 30px rgba(201,79,104,0.10)' }}>
-
+        style={{ boxShadow: '0 10px 30px rgba(111,92,208,0.06)' }}>
         {/* Report header */}
-        <div className="flex justify-between pb-6 mb-6" style={{ borderBottom: '2px solid #FDE8EC' }}>
+        <div className="flex justify-between pb-6 mb-6" style={{ borderBottom: '2px solid #EEEAFB' }}>
           <div>
             <div className="flex items-center gap-2.5 mb-1">
               <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
-                style={{ background: 'linear-gradient(135deg,#C94F68,#E87A90)' }}>
+                style={{ background: 'linear-gradient(135deg,#6F5CD0,#A596F0)' }}>
                 <span className="text-sm">💕</span>
               </div>
-              <h1 className="text-xl font-bold" style={{ color: '#8B2D40', fontFamily: 'Poppins,sans-serif' }}>FemCare AI</h1>
+              <h1 className="text-xl font-bold" style={{ color: '#2B2540', fontFamily: 'Poppins,sans-serif' }}>FemCare AI</h1>
             </div>
-            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#B8A0AA' }}>
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#4B4365' }}>
               Clinical Health Summary
             </p>
           </div>
-          <div className="text-right text-sm" style={{ color: '#8B2D40' }}>
+          <div className="text-right text-sm" style={{ color: '#2B2540' }}>
             <p className="font-bold text-base">{report.patient.name}</p>
-            <p style={{ color: '#B8A0AA' }}>{report.patient.email}</p>
-            <p className="uppercase mt-1 text-xs font-bold" style={{ color: '#C94F68' }}>
+            <p style={{ color: '#4B4365' }}>{report.patient.email}</p>
+            <p className="uppercase mt-1 text-xs font-bold" style={{ color: '#6F5CD0' }}>
               {report.patient.condition} Focus
             </p>
           </div>
@@ -161,7 +160,7 @@ const Report = () => {
         {/* Content grid */}
         <div className="grid grid-cols-2 gap-8 mb-8">
           <div>
-            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#D4B8C0' }}>
+            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#655A7E' }}>
               Cycle Metrics
             </h3>
             <div className="space-y-3">
@@ -172,34 +171,34 @@ const Report = () => {
                 { label: 'Last Period',     value: report.cycleSummary.lastPeriodStart ? new Date(report.cycleSummary.lastPeriodStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A' },
               ].map(row => (
                 <div key={row.label} className="flex justify-between py-2"
-                  style={{ borderBottom: '1px solid #FDE8EC' }}>
-                  <span className="text-sm" style={{ color: '#B8A0AA' }}>{row.label}</span>
-                  <span className="text-sm font-bold" style={{ color: row.accent ? '#C94F68' : '#8B2D40' }}>{row.value}</span>
+                  style={{ borderBottom: '1px solid #EEEAFB' }}>
+                  <span className="text-sm" style={{ color: '#4B4365' }}>{row.label}</span>
+                  <span className="text-sm font-bold" style={{ color: row.accent ? '#6F5CD0' : '#2B2540' }}>{row.value}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#D4B8C0' }}>
+            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: '#655A7E' }}>
               Symptom Overview (Last 30 Days)
             </h3>
             <div className="space-y-3">
-              <div className="flex justify-between py-2" style={{ borderBottom: '1px solid #FDE8EC' }}>
-                <span className="text-sm" style={{ color: '#B8A0AA' }}>Assessments Saved</span>
-                <span className="text-sm font-bold" style={{ color: '#8B2D40' }}>{report.symptomSummary.last30Days}</span>
+              <div className="flex justify-between py-2" style={{ borderBottom: '1px solid #EEEAFB' }}>
+                <span className="text-sm" style={{ color: '#4B4365' }}>Assessments Saved</span>
+                <span className="text-sm font-bold" style={{ color: '#2B2540' }}>{report.symptomSummary.last30Days}</span>
               </div>
               <div className="mt-4">
-                <p className="text-xs font-semibold mb-2" style={{ color: '#B8A0AA' }}>Most Frequent Symptoms:</p>
+                <p className="text-xs font-semibold mb-2" style={{ color: '#4B4365' }}>Most Frequent Symptoms:</p>
                 <div className="flex flex-wrap gap-2">
                   {report.symptomSummary.topSymptoms.map((s, i) => (
                     <span key={i} className="text-xs px-2.5 py-1 rounded-full font-semibold"
-                      style={{ background: '#FDE8EC', color: '#C94F68', border: '1px solid #FBCFDA' }}>
+                      style={{ background: '#F7F5FD', color: '#6F5CD0', border: '1px solid #E3DDF7' }}>
                       {s.type} ({s.count})
                     </span>
                   ))}
                   {report.symptomSummary.topSymptoms.length === 0 && (
-                    <span className="text-xs" style={{ color: '#D4B8C0' }}>No symptoms logged yet.</span>
+                    <span className="text-xs" style={{ color: '#655A7E' }}>No symptoms logged yet.</span>
                   )}
                 </div>
               </div>
@@ -209,13 +208,13 @@ const Report = () => {
 
         {/* Recent assessments summary if available */}
         {report.recentReports && report.recentReports.length > 0 && (
-          <div className="mb-8 p-4 rounded-2xl" style={{ background: '#FFF5F7', border: '1px solid #FDE8EC' }}>
-            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#C94F68' }}>
+          <div className="mb-8 p-4 rounded-2xl" style={{ background: '#F7F5FD', border: '1px solid #EEEAFB' }}>
+            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#6F5CD0' }}>
               Latest Symptom Assessment Result
             </h3>
-            <div className="flex justify-between items-center text-sm font-bold" style={{ color: '#8B2D40' }}>
+            <div className="flex justify-between items-center text-sm font-bold" style={{ color: '#2B2540' }}>
               <span>Primary Outcome: {report.recentReports[0].primary}</span>
-              <span className="text-xs px-2.5 py-1 rounded-full" style={{ background: '#C94F68', color: '#fff' }}>
+              <span className="text-xs px-2.5 py-1 rounded-full" style={{ background: '#6F5CD0', color: '#fff' }}>
                 {report.recentReports[0].confidence}% Confidence
               </span>
             </div>
@@ -226,9 +225,9 @@ const Report = () => {
         )}
 
         {/* Next steps */}
-        <div style={{ borderTop: '2px solid #FDE8EC', paddingTop: '24px' }}>
-          <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#D4B8C0' }}>Next Steps</h3>
-          <p className="text-sm leading-relaxed" style={{ color: '#B8A0AA' }}>
+        <div style={{ borderTop: '2px solid #EEEAFB', paddingTop: '24px' }}>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#655A7E' }}>Next Steps</h3>
+          <p className="text-sm leading-relaxed" style={{ color: '#4B4365' }}>
             Continue logging your cycle and symptoms daily for the most accurate insights. If you notice persistent irregularities, consult a gynaecologist. Use the Nearby Doctors feature to find specialists in your area. This report can be printed and shared with your healthcare provider.
           </p>
         </div>
